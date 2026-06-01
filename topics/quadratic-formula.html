@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quadratic Formula | The Proof Atlas</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <div class="site-shell">
+    <header class="topbar">
+      <a class="brand" href="../index.html">
+        <span class="brand-mark">Σ</span>
+        <span>The Proof Atlas</span>
+      </a>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="../topics.html">Topics</a>
+        <a href="../proof-book-cover.html">Cover</a>
+        <a href="quadratic-formula.html">Start Reading</a>
+      </nav>
+    </header>
+
+    <main class="content">
+      <section class="page-header">
+        <p class="eyebrow">Algebra</p>
+        <h1>Quadratic Formula</h1>
+        <p class="lead">The formula for solving equations of the form ax² + bx + c = 0, where a is not equal to zero.</p>
+      </section>
+
+      <div class="article">
+        <article class="article-main">
+          <section class="proof-section" id="formula">
+            <h2>Formula</h2>
+            <div class="formula-display">
+              <span class="math-line">x =
+                <span class="frac">
+                  <span>-b ± <span class="sqrt"><span>b² - 4ac</span></span></span>
+                  <span>2a</span>
+                </span>
+              </span>
+            </div>
+            <p>This gives the possible values of x for any quadratic equation written as ax² + bx + c = 0.</p>
+          </section>
+
+          <section class="proof-section" id="symbols">
+            <h2>Meaning of the Symbols</h2>
+            <ul class="steps">
+              <li><strong>a</strong> is the coefficient of x².</li>
+              <li><strong>b</strong> is the coefficient of x.</li>
+              <li><strong>c</strong> is the constant term.</li>
+              <li><strong>±</strong> means the equation may have two answers: one using plus and one using minus.</li>
+            </ul>
+          </section>
+
+          <section class="proof-section" id="derivation">
+            <h2>Derivation by Completing the Square</h2>
+            <p>We begin from the general quadratic equation.</p>
+            <div class="formula-display">
+              <span class="math-line">ax² + bx + c = 0</span>
+            </div>
+
+            <div class="derivation-block">
+              <div class="derivation-step">
+                <p>First, move the constant term to the other side.</p>
+                <div class="formula-display">
+                  <span class="math-line">ax² + bx = -c</span>
+                </div>
+              </div>
+
+              <div class="derivation-step">
+                <p>Divide every term by a, because the coefficient of x² must be 1 before completing the square.</p>
+                <div class="formula-display">
+                  <span class="math-line">x² + <span class="frac"><span>b</span><span>a</span></span>x = -<span class="frac"><span>c</span><span>a</span></span></span>
+                </div>
+              </div>
+
+              <div class="derivation-step">
+                <p>Take half of the coefficient of x, then square it. Half of b/a is b/2a, so we add (b/2a)² to both sides.</p>
+                <div class="formula-display">
+                  <span class="math-line">x² + <span class="frac"><span>b</span><span>a</span></span>x + (<span class="frac"><span>b</span><span>2a</span></span>)² = -<span class="frac"><span>c</span><span>a</span></span> + (<span class="frac"><span>b</span><span>2a</span></span>)²</span>
+                </div>
+              </div>
+
+              <div class="derivation-step">
+                <p>The left side is now a perfect square.</p>
+                <div class="formula-display">
+                  <span class="math-line">(x + <span class="frac"><span>b</span><span>2a</span></span>)² = -<span class="frac"><span>c</span><span>a</span></span> + <span class="frac"><span>b²</span><span>4a²</span></span></span>
+                </div>
+              </div>
+
+              <div class="derivation-step">
+                <p>Write the right side over the same denominator, 4a².</p>
+                <div class="formula-display">
+                  <span class="math-line">(x + <span class="frac"><span>b</span><span>2a</span></span>)² = <span class="frac"><span>-4ac + b²</span><span>4a²</span></span></span>
+                  <span class="math-line">(x + <span class="frac"><span>b</span><span>2a</span></span>)² = <span class="frac"><span>b² - 4ac</span><span>4a²</span></span></span>
+                </div>
+              </div>
+
+              <div class="derivation-step">
+                <p>Take the square root of both sides. This is where the plus or minus sign enters.</p>
+                <div class="formula-display">
+                  <span class="math-line">x + <span class="frac"><span>b</span><span>2a</span></span> = ± <span class="frac"><span><span class="sqrt"><span>b² - 4ac</span></span></span><span>2a</span></span></span>
+                </div>
+              </div>
+
+              <div class="derivation-step">
+                <p>Finally, move b/2a to the other side and combine the terms into one fraction.</p>
+                <div class="formula-display">
+                  <span class="math-line">x = -<span class="frac"><span>b</span><span>2a</span></span> ± <span class="frac"><span><span class="sqrt"><span>b² - 4ac</span></span></span><span>2a</span></span></span>
+                  <span class="math-line">x = <span class="frac"><span>-b ± <span class="sqrt"><span>b² - 4ac</span></span></span><span>2a</span></span></span>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="proof-section" id="roots">
+            <h2>Root Relationship Method</h2>
+            <p>Another way to understand a quadratic is to call its two roots α and β. If α and β are the roots, then the quadratic can be written from its factors.</p>
+            <div class="formula-display">
+              <span class="math-line">a(x - α)(x - β) = 0</span>
+            </div>
+            <p>Expanding the bracket gives:</p>
+            <div class="formula-display">
+              <span class="math-line">a[x² - (α + β)x + αβ] = 0</span>
+              <span class="math-line">ax² - a(α + β)x + aαβ = 0</span>
+            </div>
+            <p>Compare this with ax² + bx + c = 0.</p>
+            <div class="formula-display">
+              <span class="math-line">α + β = -<span class="frac"><span>b</span><span>a</span></span></span>
+              <span class="math-line">αβ = <span class="frac"><span>c</span><span>a</span></span></span>
+            </div>
+            <p>So the sum of the roots is -b/a, and the product of the roots is c/a. This method helps explain how the roots behave, while completing the square gives the full formula for finding them.</p>
+          </section>
+
+          <section class="proof-section" id="example">
+            <h2>Example</h2>
+            <p>Solve x² - 5x + 6 = 0.</p>
+            <div class="formula-display">
+              <span class="math-line">a = 1, b = -5, c = 6</span>
+            </div>
+            <p>Substitute the values into the formula.</p>
+            <div class="formula-display">
+              <span class="math-line">x = <span class="frac"><span>5 ± <span class="sqrt"><span>25 - 24</span></span></span><span>2</span></span></span>
+            </div>
+            <div class="formula-display">
+              <span class="math-line">x = <span class="frac"><span>5 ± 1</span><span>2</span></span></span>
+            </div>
+            <p>So x = 3 or x = 2.</p>
+          </section>
+
+          <section class="proof-section" id="notes">
+            <h2>Notes</h2>
+            <ul class="steps">
+              <li>The expression b² - 4ac is called the discriminant.</li>
+              <li>If b² - 4ac is positive, there are two real roots.</li>
+              <li>If b² - 4ac is zero, there is one repeated real root.</li>
+              <li>If b² - 4ac is negative, there are no real roots.</li>
+            </ul>
+          </section>
+        </article>
+
+        <aside class="side-index" aria-label="Topic sections">
+          <h2>On This Page</h2>
+          <a href="#formula">Formula</a>
+          <a href="#symbols">Symbols</a>
+          <a href="#derivation">Derivation</a>
+          <a href="#roots">Root Relationships</a>
+          <a href="#example">Example</a>
+          <a href="#notes">Notes</a>
+        </aside>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <p>The Proof Atlas by Ogunmefun Daniel.</p>
+    </footer>
+  </div>
+</body>
+</html>
