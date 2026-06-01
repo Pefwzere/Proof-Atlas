@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Proof Atlas Cover</title>
+  <style>
+    :root {
+      --navy-950: #020a1f;
+      --navy-900: #061334;
+      --navy-800: #09245a;
+      --blue-400: #38bdf8;
+      --blue-200: #bfdbfe;
+      --cyan-100: #e0f7ff;
+      --gold: #f8d66d;
+      --white: #f8fbff;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      background: #050816;
+      font-family: Georgia, "Times New Roman", serif;
+      color: var(--white);
+    }
+
+    .cover {
+      position: relative;
+      width: min(92vw, 780px);
+      aspect-ratio: 2 / 3;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 52% 12%, rgba(84, 184, 255, 0.24), transparent 32%),
+        radial-gradient(circle at 20% 85%, rgba(23, 97, 208, 0.38), transparent 36%),
+        linear-gradient(160deg, var(--navy-900), var(--navy-950) 58%, #000615);
+      border: 1px solid rgba(191, 219, 254, 0.26);
+      box-shadow: 0 30px 90px rgba(0, 0, 0, 0.55);
+      isolation: isolate;
+    }
+
+    .cover::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(90deg, rgba(56, 189, 248, 0.05) 1px, transparent 1px),
+        linear-gradient(rgba(56, 189, 248, 0.045) 1px, transparent 1px);
+      background-size: 44px 44px;
+      transform: perspective(600px) rotateX(62deg) translateY(170px) scale(1.35);
+      transform-origin: bottom center;
+      opacity: 0.8;
+      z-index: -1;
+    }
+
+    .formula-field {
+      position: absolute;
+      inset: 0;
+      transform-style: preserve-3d;
+      perspective: 720px;
+      opacity: 0.88;
+    }
+
+    .formula {
+      position: absolute;
+      color: rgba(204, 242, 255, 0.74);
+      text-shadow: 0 0 18px rgba(56, 189, 248, 0.5);
+      white-space: nowrap;
+      font-family: "Cambria Math", Cambria, Georgia, serif;
+    }
+
+    .f1 { top: 8%; left: 8%; font-size: clamp(1.25rem, 4vw, 2rem); transform: rotate(-7deg); }
+    .f2 { top: 18%; right: 7%; font-size: clamp(1rem, 3.5vw, 1.7rem); transform: rotate(8deg); }
+    .f3 { top: 37%; left: -7%; font-size: clamp(1.1rem, 3.4vw, 1.85rem); transform: rotate(-13deg); }
+    .f4 { top: 53%; right: -8%; font-size: clamp(1.2rem, 3.7vw, 2rem); transform: rotate(10deg); }
+    .f5 { bottom: 15%; left: 6%; font-size: clamp(1rem, 3.2vw, 1.7rem); transform: rotate(5deg); }
+    .f6 { bottom: 5%; right: 8%; font-size: clamp(1.1rem, 3vw, 1.6rem); transform: rotate(-6deg); }
+    .f7 { top: 68%; left: 31%; font-size: clamp(0.9rem, 2.5vw, 1.35rem); opacity: 0.52; }
+    .f8 { top: 27%; left: 16%; font-size: clamp(0.78rem, 2.2vw, 1.12rem); opacity: 0.48; transform: rotate(4deg); }
+    .f9 { top: 30%; right: 15%; font-size: clamp(0.82rem, 2.4vw, 1.22rem); opacity: 0.5; transform: rotate(-5deg); }
+    .f10 { top: 44%; left: 20%; font-size: clamp(0.72rem, 2.1vw, 1.08rem); opacity: 0.42; transform: rotate(9deg); }
+    .f11 { top: 47%; right: 18%; font-size: clamp(0.76rem, 2.2vw, 1.12rem); opacity: 0.42; transform: rotate(-8deg); }
+    .f12 { bottom: 27%; left: 16%; font-size: clamp(0.76rem, 2.2vw, 1.14rem); opacity: 0.52; transform: rotate(-4deg); }
+    .f13 { bottom: 26%; right: 13%; font-size: clamp(0.76rem, 2.2vw, 1.14rem); opacity: 0.5; transform: rotate(7deg); }
+    .f14 { top: 76%; left: 8%; font-size: clamp(0.7rem, 2vw, 1rem); opacity: 0.44; transform: rotate(-9deg); }
+    .f15 { top: 77%; right: 5%; font-size: clamp(0.72rem, 2vw, 1.02rem); opacity: 0.43; transform: rotate(8deg); }
+    .f16 { top: 11%; left: 49%; font-size: clamp(0.72rem, 2.2vw, 1.08rem); opacity: 0.5; transform: rotate(2deg); }
+    .f17 { bottom: 37%; left: 39%; font-size: clamp(0.7rem, 2vw, 1rem); opacity: 0.36; }
+
+    .light-plane {
+      position: absolute;
+      left: 50%;
+      bottom: -14%;
+      width: 92%;
+      height: 56%;
+      transform: translateX(-50%) perspective(700px) rotateX(66deg);
+      background:
+        radial-gradient(ellipse at center, rgba(56, 189, 248, 0.32), rgba(56, 189, 248, 0.08) 46%, transparent 70%);
+      filter: blur(2px);
+    }
+
+    .title-block {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 9%;
+      text-align: center;
+    }
+
+    .series {
+      margin-bottom: 1.1rem;
+      color: var(--gold);
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: clamp(0.72rem, 1.7vw, 0.92rem);
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      width: min-content;
+      margin: 0;
+      color: var(--white);
+      font-size: clamp(3.4rem, 11vw, 7.2rem);
+      line-height: 0.9;
+      letter-spacing: 0;
+      text-shadow:
+        0 4px 0 rgba(8, 31, 76, 0.9),
+        0 0 34px rgba(56, 189, 248, 0.46);
+    }
+
+    .subtitle {
+      max-width: 34rem;
+      margin: 1.4rem 0 0;
+      color: var(--blue-200);
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: clamp(0.95rem, 2.4vw, 1.28rem);
+      line-height: 1.5;
+    }
+
+    .author {
+      position: absolute;
+      left: 9%;
+      right: 9%;
+      bottom: 7%;
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      color: rgba(224, 247, 255, 0.84);
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: clamp(0.72rem, 1.8vw, 0.98rem);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .spine-mark {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      width: 4.7%;
+      background: linear-gradient(#0ea5e9, #102a69 42%, #010715);
+      box-shadow: 8px 0 32px rgba(14, 165, 233, 0.18);
+    }
+
+    .corner-line {
+      position: absolute;
+      inset: 5.5%;
+      border: 1px solid rgba(191, 219, 254, 0.28);
+      pointer-events: none;
+    }
+
+    @media (max-width: 520px) {
+      .author {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="cover" aria-label="Book cover for The Proof Atlas">
+    <div class="spine-mark"></div>
+    <div class="corner-line"></div>
+    <div class="light-plane"></div>
+    <div class="formula-field" aria-hidden="true">
+      <span class="formula f1">x = (-b ± √(b² - 4ac)) / 2a</span>
+      <span class="formula f2">sin²θ + cos²θ = 1</span>
+      <span class="formula f3">Σr = n(n + 1) / 2</span>
+      <span class="formula f4">a² + b² = c²</span>
+      <span class="formula f5">S∞ = a / (1 - r)</span>
+      <span class="formula f6">e^(iπ) + 1 = 0</span>
+      <span class="formula f7">A = 1/2 bh</span>
+      <span class="formula f8">(a + b)² = a² + 2ab + b²</span>
+      <span class="formula f9">cos(A + B) = cosAcosB - sinAsinB</span>
+      <span class="formula f10">d/dx(xⁿ) = nxⁿ⁻¹</span>
+      <span class="formula f11">C(n,r) = n! / r!(n-r)!</span>
+      <span class="formula f12">V = 4/3 πr³</span>
+      <span class="formula f13">log(ab) = loga + logb</span>
+      <span class="formula f14">Tₙ = a + (n - 1)d</span>
+      <span class="formula f15">tanθ = sinθ / cosθ</span>
+      <span class="formula f16">F = ma</span>
+      <span class="formula f17">∫ xⁿ dx = xⁿ⁺¹/(n + 1) + C</span>
+    </div>
+
+    <section class="title-block">
+      <p class="series">Formula Derivations From Basics To Olympiad</p>
+      <h1>The Proof Atlas</h1>
+      <p class="subtitle">Tracing the origins of mathematical formulas.</p>
+    </section>
+
+    <footer class="author">
+      <span>Online Edition</span>
+      <span>By Ogunmefun Daniel</span>
+    </footer>
+  </main>
+</body>
+</html>
