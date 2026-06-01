@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Practice | The Proof Atlas</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="site-shell">
+    <header class="topbar">
+      <a class="brand" href="index.html">
+        <span class="brand-mark">&Sigma;</span>
+        <span>The Proof Atlas</span>
+      </a>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="topics.html">Topics</a>
+        <a href="practice.html">Practice</a>
+        <a href="exam.html">Exam</a>
+        <a href="proof-book-cover.html">Cover</a>
+        <a href="topics/quadratic-formula.html">Start Reading</a>
+      </nav>
+    </header>
+
+    <main class="content">
+      <section class="page-header">
+        <p class="eyebrow">Practice Questions</p>
+        <h1>Practice</h1>
+        <p class="lead">Choose a treated topic and answer questions based on the formulas and derivations in The Proof Atlas.</p>
+      </section>
+
+      <section class="practice-layout">
+        <aside class="practice-panel">
+          <label class="field-label" for="topic-select">Choose Topic</label>
+          <select class="select-field" id="topic-select">
+            <option value="quadratic">Quadratic Formula</option>
+            <option value="differenceSquares">Difference of Two Squares</option>
+            <option value="ap">Arithmetic Progression Sum</option>
+            <option value="gp">Geometric Progression Sum</option>
+            <option value="pythagoras">Pythagoras Theorem</option>
+          </select>
+          <p class="muted">More topics will appear here as you add more proof pages.</p>
+        </aside>
+
+        <section class="practice-panel" aria-live="polite">
+          <h2 class="section-title" id="practice-title">Quadratic Formula</h2>
+          <div class="question-list" id="question-list"></div>
+        </section>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>The Proof Atlas by Ogunmefun Daniel.</p>
+    </footer>
+  </div>
+
+  <script>
+    const practiceSets = {
+      quadratic: {
+        title: "Quadratic Formula",
+        questions: [
+          { prompt: "State the general form of a quadratic equation.", answer: "ax^2 + bx + c = 0, where a is not equal to 0." },
+          { prompt: "If alpha and beta are the roots of ax^2 + bx + c = 0, what is alpha + beta?", answer: "alpha + beta = -b/a." },
+          { prompt: "If alpha and beta are the roots of ax^2 + bx + c = 0, what is alpha beta?", answer: "alpha beta = c/a." },
+          { prompt: "Solve x^2 - 5x + 6 = 0.", answer: "x = 2 or x = 3." },
+          { prompt: "What is the discriminant of ax^2 + bx + c = 0?", answer: "The discriminant is b^2 - 4ac." }
+        ]
+      },
+      differenceSquares: {
+        title: "Difference of Two Squares",
+        questions: [
+          { prompt: "Complete the identity: a^2 - b^2 = ?", answer: "a^2 - b^2 = (a - b)(a + b)." },
+          { prompt: "Factorise x^2 - 49.", answer: "x^2 - 49 = (x - 7)(x + 7)." },
+          { prompt: "Why do the middle terms cancel when expanding (a - b)(a + b)?", answer: "Because the expansion gives a^2 + ab - ab - b^2, and +ab - ab = 0." }
+        ]
+      },
+      ap: {
+        title: "Arithmetic Progression Sum",
+        questions: [
+          { prompt: "State the nth term of an arithmetic progression.", answer: "Tn = a + (n - 1)d." },
+          { prompt: "State the sum formula using first term a, last term l, and number of terms n.", answer: "Sn = n/2(a + l)." },
+          { prompt: "Find the 10th term of 3, 7, 11, ...", answer: "a = 3, d = 4, so T10 = 3 + 9(4) = 39." }
+        ]
+      },
+      gp: {
+        title: "Geometric Progression Sum",
+        questions: [
+          { prompt: "State the nth term of a geometric progression.", answer: "Tn = ar^(n-1)." },
+          { prompt: "State the finite sum formula for a GP when r is not 1.", answer: "Sn = a(r^n - 1)/(r - 1)." },
+          { prompt: "Find the 5th term of 2, 6, 18, ...", answer: "a = 2, r = 3, so T5 = 2(3^4) = 162." }
+        ]
+      },
+      pythagoras: {
+        title: "Pythagoras Theorem",
+        questions: [
+          { prompt: "State Pythagoras theorem.", answer: "In a right-angled triangle, a^2 + b^2 = c^2, where c is the hypotenuse." },
+          { prompt: "Find c if a = 3 and b = 4.", answer: "c^2 = 3^2 + 4^2 = 25, so c = 5." },
+          { prompt: "In the area proof, what is the area of the large square with side a + b?", answer: "(a + b)^2." }
+        ]
+      }
+    };
+
+    const topicSelect = document.getElementById("topic-select");
+    const title = document.getElementById("practice-title");
+    const questionList = document.getElementById("question-list");
+
+    function renderPractice(topicKey) {
+      const set = practiceSets[topicKey];
+      title.textContent = set.title;
+      questionList.innerHTML = set.questions.map((question, index) => `
+        <article class="question-card">
+          <h2>Question ${index + 1}</h2>
+          <p>${question.prompt}</p>
+          <details class="answer">
+            <summary>Show answer</summary>
+            <p>${question.answer}</p>
+          </details>
+        </article>
+      `).join("");
+    }
+
+    topicSelect.addEventListener("change", event => {
+      renderPractice(event.target.value);
+    });
+
+    renderPractice(topicSelect.value);
+  </script>
+</body>
+</html>

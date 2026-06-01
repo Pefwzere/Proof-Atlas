@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exam | The Proof Atlas</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="site-shell">
+    <header class="topbar">
+      <a class="brand" href="index.html">
+        <span class="brand-mark">&Sigma;</span>
+        <span>The Proof Atlas</span>
+      </a>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="topics.html">Topics</a>
+        <a href="practice.html">Practice</a>
+        <a href="exam.html">Exam</a>
+        <a href="proof-book-cover.html">Cover</a>
+        <a href="topics/quadratic-formula.html">Start Reading</a>
+      </nav>
+    </header>
+
+    <main class="content">
+      <section class="page-header">
+        <p class="eyebrow">Timed Mode</p>
+        <h1>Exam</h1>
+        <p class="lead">Choose a topic, set the number of questions, start the timer, and test what you understand.</p>
+      </section>
+
+      <section class="practice-panel">
+        <div class="exam-controls">
+          <div>
+            <label class="field-label" for="exam-topic">Topic</label>
+            <select class="select-field" id="exam-topic">
+              <option value="all">Mixed Topics</option>
+              <option value="quadratic">Quadratic Formula</option>
+              <option value="differenceSquares">Difference of Two Squares</option>
+              <option value="ap">Arithmetic Progression Sum</option>
+              <option value="gp">Geometric Progression Sum</option>
+              <option value="pythagoras">Pythagoras Theorem</option>
+            </select>
+          </div>
+          <div>
+            <label class="field-label" for="question-count">Questions</label>
+            <select class="select-field" id="question-count">
+              <option value="5">5 Questions</option>
+              <option value="10">10 Questions</option>
+              <option value="15">15 Questions</option>
+            </select>
+          </div>
+          <div>
+            <label class="field-label" for="time-limit">Time Limit</label>
+            <select class="select-field" id="time-limit">
+              <option value="300">5 Minutes</option>
+              <option value="600">10 Minutes</option>
+              <option value="900">15 Minutes</option>
+            </select>
+          </div>
+          <button class="button primary" id="start-exam" type="button">Start Exam</button>
+        </div>
+      </section>
+
+      <section class="practice-panel" style="margin-top: 1rem;">
+        <div class="timer-pill" id="timer">Timer: --:--</div>
+        <div class="question-list" id="exam-list" style="margin-top: 1rem;"></div>
+        <button class="button primary" id="submit-exam" type="button" style="margin-top: 1rem;" disabled>Submit Exam</button>
+        <div id="score-output"></div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>The Proof Atlas by Ogunmefun Daniel.</p>
+    </footer>
+  </div>
+
+  <script>
+    const bank = {
+      quadratic: [
+        { q: "What is the general form of a quadratic equation?", o: ["ax + b = 0", "ax^2 + bx + c = 0", "a/x + b = c", "x^3 + ax = 0"], a: 1 },
+        { q: "For ax^2 + bx + c = 0, what is the sum of roots?", o: ["b/a", "-b/a", "c/a", "-c/a"], a: 1 },
+        { q: "For ax^2 + bx + c = 0, what is the product of roots?", o: ["b/a", "-b/a", "c/a", "-c/a"], a: 2 },
+        { q: "What is the discriminant?", o: ["b^2 - 4ac", "b^2 + 4ac", "a^2 - 4bc", "2a"], a: 0 },
+        { q: "Solve x^2 - 5x + 6 = 0.", o: ["1 and 6", "2 and 3", "-2 and -3", "5 and 6"], a: 1 }
+      ],
+      differenceSquares: [
+        { q: "a^2 - b^2 equals what?", o: ["(a - b)^2", "(a + b)^2", "(a - b)(a + b)", "a(a - b)"], a: 2 },
+        { q: "Factorise x^2 - 36.", o: ["(x - 6)(x + 6)", "(x - 18)(x + 18)", "(x - 6)^2", "(x + 6)^2"], a: 0 },
+        { q: "Which middle terms cancel in (a - b)(a + b)?", o: ["a^2 and b^2", "+ab and -ab", "a and b", "2ab and b^2"], a: 1 }
+      ],
+      ap: [
+        { q: "What is the nth term of an AP?", o: ["ar^(n-1)", "a + (n - 1)d", "n/2(a + l)", "a^2 - b^2"], a: 1 },
+        { q: "What is Sn using first and last terms?", o: ["n/2(a + l)", "a + (n - 1)d", "a(r^n - 1)/(r - 1)", "ab/2"], a: 0 },
+        { q: "For 3, 7, 11, ... what is d?", o: ["3", "4", "7", "11"], a: 1 }
+      ],
+      gp: [
+        { q: "What is the nth term of a GP?", o: ["a + (n - 1)d", "ar^(n-1)", "n/2(a + l)", "a^2 + b^2"], a: 1 },
+        { q: "In 2, 6, 18, ... what is r?", o: ["2", "3", "6", "12"], a: 1 },
+        { q: "Which operation is used between GP terms?", o: ["Adding d", "Multiplying by r", "Subtracting r", "Dividing by n"], a: 1 }
+      ],
+      pythagoras: [
+        { q: "Pythagoras theorem is used in which triangle?", o: ["Equilateral", "Right-angled", "Obtuse only", "Any polygon"], a: 1 },
+        { q: "If shorter sides are a and b, and hypotenuse is c, then:", o: ["a + b = c", "a^2 + b^2 = c^2", "a^2 - b^2 = c^2", "ab = c"], a: 1 },
+        { q: "If a = 3 and b = 4, what is c?", o: ["5", "6", "7", "25"], a: 0 }
+      ]
+    };
+
+    const topic = document.getElementById("exam-topic");
+    const count = document.getElementById("question-count");
+    const timeLimit = document.getElementById("time-limit");
+    const startButton = document.getElementById("start-exam");
+    const submitButton = document.getElementById("submit-exam");
+    const examList = document.getElementById("exam-list");
+    const timer = document.getElementById("timer");
+    const scoreOutput = document.getElementById("score-output");
+    let activeQuestions = [];
+    let intervalId = null;
+    let secondsLeft = 0;
+
+    function getQuestions(topicKey) {
+      const questions = topicKey === "all"
+        ? Object.values(bank).flat()
+        : bank[topicKey];
+      return [...questions].sort(() => Math.random() - 0.5);
+    }
+
+    function formatTime(totalSeconds) {
+      const minutes = Math.floor(totalSeconds / 60).toString().padStart(2, "0");
+      const seconds = (totalSeconds % 60).toString().padStart(2, "0");
+      return `${minutes}:${seconds}`;
+    }
+
+    function renderExam() {
+      examList.innerHTML = activeQuestions.map((question, index) => `
+        <article class="question-card">
+          <h2>Question ${index + 1}</h2>
+          <p>${question.q}</p>
+          <div class="option-list">
+            ${question.o.map((option, optionIndex) => `
+              <label>
+                <input type="radio" name="q${index}" value="${optionIndex}">
+                <span>${option}</span>
+              </label>
+            `).join("")}
+          </div>
+        </article>
+      `).join("");
+    }
+
+    function finishExam() {
+      clearInterval(intervalId);
+      submitButton.disabled = true;
+      let score = 0;
+      activeQuestions.forEach((question, index) => {
+        const chosen = document.querySelector(`input[name="q${index}"]:checked`);
+        if (chosen && Number(chosen.value) === question.a) score += 1;
+      });
+      scoreOutput.innerHTML = `<div class="score-box">Score: ${score}/${activeQuestions.length}</div>`;
+    }
+
+    startButton.addEventListener("click", () => {
+      clearInterval(intervalId);
+      scoreOutput.innerHTML = "";
+      activeQuestions = getQuestions(topic.value).slice(0, Number(count.value));
+      secondsLeft = Number(timeLimit.value);
+      timer.textContent = `Timer: ${formatTime(secondsLeft)}`;
+      submitButton.disabled = false;
+      renderExam();
+      intervalId = setInterval(() => {
+        secondsLeft -= 1;
+        timer.textContent = `Timer: ${formatTime(secondsLeft)}`;
+        if (secondsLeft <= 0) finishExam();
+      }, 1000);
+    });
+
+    submitButton.addEventListener("click", finishExam);
+  </script>
+</body>
+</html>
